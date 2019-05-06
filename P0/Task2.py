@@ -20,3 +20,14 @@ Print a message:
 September 2016.".
 """
 
+time_spent = {}
+for call in calls:
+    time_spent[call[0]] = time_spent.get(call[0], 0) + int(call[3])
+    if call[0] != call[1]:
+        time_spent[call[1]] = time_spent.get(call[1], 0) + int(call[3])
+
+longest_number = None
+for number,seconds in time_spent.items():
+    if longest_number is None or seconds > time_spent[longest_number]:
+        longest_number = number
+print("{} spent the longest time, {} seconds, on the phone during Sptember 2016.".format(longest_number, time_spent[longest_number]))
