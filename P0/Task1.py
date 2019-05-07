@@ -20,11 +20,11 @@ Print a message:
 """
 numbers = {}
 for text in texts:
-    numbers[text[0]] = 0
-    numbers[text[1]] = 0
+    numbers[text[0]] = None
+    numbers[text[1]] = None
 
 for call in calls:
-    numbers[call[0]] = 0
-    numbers[call[1]] = 0
+    numbers[call[0]] = None
+    numbers[call[1]] = None
 
 print("There are {} different telephone numbers in the records.".format(len(numbers)))

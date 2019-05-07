@@ -1,0 +1,52 @@
+Worst Case Runtime Analysis
+
+Notes: 
+  * Below I will use t to represent the number of rows in the texts file and c
+    to represent the number of rows in the calls file
+  * Every task starts by reading the texts file and the calls file.  This is
+    done in O(t+c).  I will not include this part in the analysis below.
+
+Task0:
+  Print the first text and the last call
+  * You can grab the first and last row of each without iterating through other rows.
+  * Runtime: O(1)  
+   
+
+Task1:
+  Get the number of unique phone numbers across both files
+  * I searched each row of each file 1 time
+  * The len() function takes O(1) for dictionaries in Python
+  * Runtime: O(t+c)
+
+Task2:
+  Find how long the longest number spent in all calls
+  * I iterated through all calls and kept a running total of time spent by all
+    numbers in c.
+  * Then I iterated over the list of time spent by all phones to find the
+    maximum.  In worst case the length of this list is c.
+  * Runtime: O(2*c) -> O(c)
+
+Task3:
+  Get all the area codes for people that recieved a call from Bangalore.
+  Answer what percent of calls were made within Bangalore.
+  * I iterated over all calls in O(c)
+  * I sorted the bangalore recipients which in worst case containc c numbers
+  * Python sort uses timsort which takes O(c log c) in worst-case
+  * Lastly, I iterated over those area codes to print them out
+  * Runtime: O(2c + c log c) -> O(c log c)
+
+Task4:
+  Find all numbers that only have outgoing calls (no incoming and no texts)
+  * I iterated over all texts to aggregate texters: O(t)
+  * I iterated over all calls to aggregate callers: O(c)
+  * For each caller I checked them against the texting database. Each check
+    took O(1) time
+  * Then I iterated over all people that made a call and checked them against
+    the recipient database.  O(c) people in the list and O(1) to lookup in the
+    recipient database.
+  * Then, I sorted the list of potential telemarketers
+  * Lastly, I iterated over all the numbers and printed them
+  * Runtime: O(t + c + c + c log c + c) = O(t+3c+c log c) -> O(t + c log c)
+  * Typically, you could ignore the t above, but it would become important if
+    the list of callers had 1 number and the list of texters had 10,000,000
+    rows.

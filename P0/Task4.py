@@ -27,15 +27,15 @@ The list of numbers should be print out one per line in lexicographic order with
 
 texting_numbers = {}
 for text in texts:
-    texting_numbers[text[0]] = 1
-    texting_numbers[text[1]] = 1
+    texting_numbers[text[0]] = None
+    texting_numbers[text[1]] = None
 
 received_calls = {}
 sent_calls = {}
 for call in calls:
-    received_calls[call[1]] = 1
+    received_calls[call[1]] = None
     if call[0] not in texting_numbers:
-        sent_calls[call[0]] = 1
+        sent_calls[call[0]] = None
 
 potential_telemarketers = []
 for number in sent_calls:
