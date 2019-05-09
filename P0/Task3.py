@@ -57,8 +57,8 @@ bangalore_recipients = {}
 bangalore_fixed_recipients = 0
 total_calls = 0
 for call in calls:
-    total_calls += 1
     if call[0].startswith('(080)'):
+        total_calls += 1
         area_code = get_area_code(call[1])
         bangalore_recipients[area_code] = None
         if area_code == '080':
