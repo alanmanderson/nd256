@@ -53,19 +53,22 @@ def get_area_code(number):
         return '140'
     raise Exception('Invalid number: ' + number)
 
-bangalore_recipients = []
+bangalore_recipients = {}
 bangalore_fixed_recipients = 0
+total_calls = 0
 for call in calls:
+    total_calls += 1
     if call[0].startswith('(080)'):
         area_code = get_area_code(call[1])
-        bangalore_recipients.append(area_code)
+        bangalore_recipients[area_code] = None
         if area_code == '080':
             bangalore_fixed_recipients += 1
 
 print("The numbers called by people in Bangalore have codes:")
+bangalore_recipients = list(bangalore_recipients.keys())
 bangalore_recipients.sort()
 [print(code) for code in bangalore_recipients]
 
 
-percent_local = bangalore_fixed_recipients / len(bangalore_recipients)
+percent_local = bangalore_fixed_recipients / total_calls * 100
 print("{} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(round(percent_local, 2)))
