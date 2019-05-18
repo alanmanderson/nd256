@@ -10,16 +10,14 @@ class LRU_Cache(object):
         # mark the element as MRU
         if key not in self.memory:
             return -1
-        value = self.memory[key]
-        del(self.memory[key])
+        value = self.memory.pop(key)
         self.memory[key] = value
         return value
 
     def set(self, key, value):
-        # Set the value if the key is not present in the cache. If the cache is at capacity remove the oldest item. 
         if len(self.memory) ==  self.capacity:
             # clear LRU slot
-            self.memory.popitem()
+            self.memory.popitem(False)
         self.memory[key] = value
 
 our_cache = LRU_Cache(5)
