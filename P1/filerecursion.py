@@ -17,21 +17,10 @@ def find_files(suffix, path):
        a list of paths
     """
     matching_files = []
-    if path.startswith(os.sep):
-        full_path = path
-    else:
-        full_path = os.path.realpath(path)
-    queue = [os.path.realpath(queue[i]) for i in os.listdir(path)]
-    print(queue)
-    while len(queue) > 0:
-        print(queue)
-        next_file = queue.pop()
-        full_path = os.path.realpath(next_file)
-        if os.path.isfile(full_path):
-            if next_file.endswith('.c'):
-                matching_files.append(full_path)
-        else:
-            queue += os.listdir(full_path)
+    for dir, _, files in os.walk(path):
+        for f in files:
+            if f.endswith(suffix):
+                matching_files.append(os.path.join(dir, f))
     return matching_files
 
 files = find_files('.c', '.')
