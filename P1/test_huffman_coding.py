@@ -6,6 +6,9 @@ class TestHuffmanEncoding(unittest.TestCase):
     def test_empty_string(self):
         pass
 
+    def test_create_huffman_tree(self):
+        pass
+
     def test_character_frequencies(self):
         test_string = 'Hydrogen-monoxide: H2O'
         expects = {
